@@ -1,0 +1,49 @@
+{
+  "name": "backend-template",
+  "description": "Template for backend projects",
+  "author": "Edilson Alves <email@edilsonalves.com>",
+  "license": "UNLICENSED",
+  "private": "true",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node --env-file=./envs/.env.production ./src/index.ts",
+    "start:dev": "node --env-file=./envs/.env.development --watch ./src/index.ts",
+    "db:client": "dotenv -e ./envs/.env.development prisma generate",
+    "db:deploy": "dotenv -e ./envs/.env.production prisma migrate deploy",
+    "db:deploy:dev": "dotenv -e ./envs/.env.development prisma migrate deploy",
+    "db:migrate": "dotenv -e ./envs/.env.development prisma migrate dev",
+    "db:reset": "dotenv -e ./envs/.env.development prisma migrate reset",
+    "db:studio": "dotenv -e ./envs/.env.development prisma studio",
+    "code:check": "biome check && tsc",
+    "code:format": "biome format --write",
+    "code:lint": "biome lint --write",
+    "test": "node --env-file=./envs/.env.development --test --test-concurrency=1",
+    "test:ci": "npm run code:test -- --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout"
+  },
+  "imports": {
+    "#*": "./src/*",
+    "#prisma/*": "./prisma/*",
+    "#tests/*": "./tests/*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10",
+    "@types/node": "24.10.8",
+    "@types/pg": "8.16.0",
+    "dotenv-cli": "11.0.0",
+    "prisma": "7.2.0",
+    "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "@fastify/swagger": "9.6.0",
+    "@fastify/swagger-ui": "5.2.4",
+    "@prisma/adapter-pg": "7.2.0",
+    "@prisma/client": "7.2.0",
+    "awilix": "12.0.5",
+    "fastify": "5.7.0",
+    "fastify-type-provider-zod": "6.1.0",
+    "pg": "8.17.0",
+    "zod": "4.3.4"
+  }
+}

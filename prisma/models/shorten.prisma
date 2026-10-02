@@ -1,0 +1,27 @@
+model ShortenUrl {
+  id          String    @id @default(uuid(7))
+  originalUrl String    @map("original_url")
+  shortCode   String    @unique @map("short_code")
+  shortUrl    String    @unique @map("short_url")
+  expiresAt   DateTime? @map("expires_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  clicks ShortenUrlClick[]
+
+  @@index([originalUrl])
+  @@map("shorten_urls")
+}
+
+model ShortenUrlClick {
+  id           String   @id @default(uuid(7))
+  shortenUrlId String   @map("shorten_url_id")
+  referrer     String?
+  userAgent    String?  @map("user_agent")
+  ip           String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  shortenUrl ShortenUrl @relation(fields: [shortenUrlId], references: [id])
+
+  @@index([shortenUrlId])
+  @@map("shorten_url_clicks")
+}

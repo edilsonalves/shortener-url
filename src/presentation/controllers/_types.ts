@@ -6,3 +6,9 @@ export type CreateResponse = Res<typeof Schemas.create>
 
 export type ShowRequest = Req<typeof Schemas.show>
 export type ShowResponse = Res<typeof Schemas.show>
+
+export type ShortenRequest = Req<typeof Schemas.shorten>
+export type ShortenResponse = Res<typeof Schemas.shorten>
+
+export type RedirectRequest = Req<typeof Schemas.redirect>
+export type RedirectResponse = Res<typeof Schemas.redirect>

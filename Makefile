@@ -97,10 +97,10 @@ code/lint:
 .PHONY: test
 test:
 	@echo 'Running tests...'
-	@npm run code:test
+	@npm test
 
 ## test/ci: Run the tests (ci).
 .PHONY: test/ci
 test/ci:
 	@echo 'Running tests (ci)...'
-	@npm run code:test:ci
+	@npm run test:ci
